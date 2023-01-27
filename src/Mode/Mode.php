@@ -43,6 +43,16 @@ abstract class Mode
     {
         $this->commands[] = $command;
     }
+    
+    /**
+     * Empties the command array.
+     *
+     * @return void
+     */
+    public function flushCommands()
+    {
+        $this->commands = [];
+    }
 
     /**
      * @return CommandInterface[]

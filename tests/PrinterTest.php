@@ -52,6 +52,19 @@ class PrinterTest extends PHPUnit_Framework_TestCase
         $this->assertCount(1, $printer->getMode()->getCommands());
     }
 
+    public function testFlushCommand()
+    {
+        $printer = new Printer(new Mode\Escp($this->stream));
+        $printer->addCommand(new Command\Bold());
+        $printer->addCommand(new Command\Text('Hello World!'));
+
+        $this->assertCount(2, $printer->getMode()->getCommands());
+
+        $printer->printLabel();
+
+        $this->assertCount(0, $printer->getMode()->getCommands());
+    }
+
     public function testAddMultipleCommands()
     {
         $printer = new Printer(new Mode\Escp($this->stream));

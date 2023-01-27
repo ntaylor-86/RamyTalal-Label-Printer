@@ -55,5 +55,7 @@ class Printer
         }
 
         $this->mode->process();
+
+        $this->mode->flushCommands();
     }
 }
